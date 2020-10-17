@@ -106,7 +106,10 @@ Based on the above data structure the **JS Viz** requires, the properties.json f
     ...
 
 Here's a screenshot of what InfoAssist would show with this definition.
-[Insert Screenshot Here! This will the bucket area in InfoAssist]
+![Buckets in InfoAssist](/screenshots/01-InfoAssist-Buckets.png)
+
+Here's a screenshot of what Designer would show with this definition.
+![Buckets in Designer](/screenshots/01-Designer-Buckets.png)
 
 The min property defines how many fields need to be dropped into the bucket before WebFOCUS will try to send real data to the **JS Viz** to render. For example, if min = 0, then no fields need to be added for WF to send data. If min = 1, then the user has to put at least one field into the bucket before WF will send real data. 
 
@@ -122,7 +125,7 @@ The template project comes with draw_chart.html which is a stand-alone example t
 
 Deploy this file with the src/lib directory to your web server (tomcat, nodejs, etc.) to confirm it works. You should see this show up:
 
-[Insert Screenshot Here! Image of chart rendering]
+![D3 Bar Chart](/screenshots/02-stand-alone-chart.png)
 
 ### Step 1.3: Applying the dataBuckets definition to the template ###
 
