@@ -1,0 +1,77 @@
+{
+  "info": {
+    "version": "1.0",
+    "implements_api_version": 2.0,
+    "author": "Sandy Chiang",
+    "copyright": "Information Builders Inc",
+    "url": "",
+    "license": "BSD 3-clause",
+    "icons": {
+      "medium": "icons/bar_chart_medium.png"
+    }
+  },
+
+  "properties": {
+    "xAxis": {
+      "title": "My Axis Title",
+      "showTitle": true
+    },
+    "yAxis": {
+      "title": "My Axis Title",
+      "showTitle": true
+    },
+    "barColor": "#A0A0A0"
+  },
+  "propertyAnnotations": {
+    "xAxis": {
+      "title": "str",
+      "showTitle": "bool"
+    },
+    "yAxis": {
+      "title": "str",
+      "showTitle": "bool"
+    },
+    "barColor": "color"
+  },
+  "dataBuckets": {
+    "buckets": [
+      {
+        "id": "xAxis",
+        "type": "dimension",
+        "count": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "id": "yAxis",
+        "type": "measure",
+        "count": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ]
+  },
+  "translations": {
+    "en": {
+      "name": "D3 Bar Chart",
+      "description": "D3 Bar Chart",
+      "icon_tooltip": "D3 Bar Chart",
+      "xAxis_name": "X Axis",
+      "xAxis_tooltip": "Drop a dimension here",
+      "yAxis_name": "Y Axis",
+      "yAxis_tooltip": "Drop measure here"
+    },
+
+    "fr": {
+      "name": "D3 Bar Chart (FR)",
+      "description": "D3 Bar Chart (FR)",
+      "icon_tooltip": "D3 Bar Chart (FR)",
+      "xAxis_name": "X Axis (FR)",
+      "xAxis_tooltip": "Drop a dimension  (FR)",
+      "yAxis_name": "Y Axis (FR)",
+      "yAxis_tooltip": "Drop measure here (FR)"
+    }
+  }
+}
