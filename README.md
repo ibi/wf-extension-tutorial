@@ -21,7 +21,7 @@ It is highly recommended to play around with some of the other extensions in Web
 
 To streamline the development process, it is recommended to create a stand-alone dev environment to start the wrapping of your  **JS Viz** vs. having to develop within the WebFOCUS environment.
 
-Download the git repository [link TBD] template that you can use as a starting point.
+Download the project template provided in this git repository as a starting point.
 
 The project has a lot of similiarity in terms of file structure.
 
