@@ -71,6 +71,7 @@
           .data(data)
           .enter()
           .append("rect")
+          .attr('fill', renderConfig.properties.barColor)
           .attr("class", "bar")
           .attr("x", function (d) {
             return x(d.xAxis);

@@ -305,17 +305,19 @@ This section will make direct references to lines of code in ext_wrapper.html th
 
 7. On line 45, use renderConfig.container.id to select the element where the   **JS Viz**  will be rendered
 
-8. On line 92, a check is done on the renderConfig.properties.xAxis.showTitle; if true, then add an xAxis label
+8. On line 74, use renderConfig.properties.barColor to set the color of the bars
 
-9. On line 101, the  renderConfig.properties.xAxis.title property is used to set the label of the X axis
+9. On line 93, a check is done on the renderConfig.properties.xAxis.showTitle; if true, then add an xAxis label
 
-10. On line 92, a check is done on the renderConfig.properties.yAxis.showTitle; if true, then add an yAxis label
+10. On line 102, the  renderConfig.properties.xAxis.title property is used to set the label of the X axis
 
-11. On line 111, get the metadata associated with yAxis so that we can use the title there.
+11. On line 108, a check is done on the renderConfig.properties.yAxis.showTitle; if true, then add an yAxis label
 
-12. On line 120, the  renderConfig.properties.yAxis.title property is used to set the label of the Y axis but commented out
+12. On line 112, get the metadata associated with yAxis so that we can use the title there.
 
-13. On line 121, add the label from yAxis.fields[0].title
+13. On line 121, the  renderConfig.properties.yAxis.title property is used to set the label of the Y axis but commented out
+
+14. On line 122, add the label from yAxis.fields[0].title
 
 ### Step 1.6: Deploy to Web Server for Debugging ###
 
@@ -424,8 +426,8 @@ Here is what I usually do to set up debugging with Chrome:
 
 You should be able to debug from there. If it doesn't even get there, review how you configured the extension in the config variable in your extension file.
 
-##  3: Implementing advanced features ##
-This will be documented on a future date.
+
+
 
 
 
