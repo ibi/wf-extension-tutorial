@@ -1,0 +1,15 @@
+/*tool tip container*/
+span[id*="tooltip"] {
+    background-color: #AEAEAE !important;
+    border: 1px solid #505050 !important;
+}
+
+/*tool field name label*/
+.tdgchart-tooltip-name{
+    color: #FF0000 !important;
+}
+
+/*tool field value label*/
+.tdgchart-tooltip-value {
+    color: #FF0000 !important;
+}
