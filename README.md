@@ -331,6 +331,8 @@ This is what you should see:
 
 [Insert Screenshot here! Screenshot of rendered chart]
 
+Assuming your stand-alone **JS Viz** renders with the stubbed WebFOCUS API objects you created, you're ready to proceed to Section 2 which will focus on creating a WebFOCUS extension and how to deploy it to your WebFOCUS environment.
+
 ## 2: Creating a WebFOCUS Extension ##
 
 In the extensions github repository, there's already a good explanation of how to create a WebFOCUS extension that can be found here:
@@ -338,13 +340,15 @@ https://github.com/ibi/wf-extensions-chart/wiki/Creating-a-WebFocus-Extension
 
 This section will take a look at some best practices on creating the extension based on the stand-alone page ext_wrapper.html.
 
-The template project already contains the resources to "build" a WebFOCUS extension. Specifically in the src directory:
+The template project contains the resources to "build" a WebFOCUS extension. Specifically in the src directory:
 
 * icons folder - stores the images that will be used to render in various aspects of WebFOCUS including the Extension Manager and as a visual cue for selecting in InfoAssist and Designer.
 
 * lib folder - contains all the external js libraries required - this will typically align with the js references made in ext_wrapper.html
 
-**NOTE: You can reference URLs as well so you don't necessarily need to have a lib folder.**
+* css folder - contains any external css files required
+
+**NOTE: You can reference URLs as well so you don't necessarily need to have a lib or css folder.**
 
 * com.ibi.d3_bar_chart.js - the entry point for the WebFOCUS extension; this is where you would put most, if not all, of your custom code
 
@@ -360,13 +364,13 @@ On line 3 of com.ibi.d3_bar_chart.js, there's an object defined, com_ibi_d3_bar_
 
 **NOTE: If *JS Viz* requires a lot of code, then you may want to create an external js file like d3_bar_chart.js and put the com_ibi_d3_bar_chart object there. If you take this route, be sure to add it to the lib folder.**
 
-On line 127 of com.ibi.d3_bar_chart.js, the function is called passing the WebFOCUS API renderConfig object.
+* On line 127 of com.ibi.d3_bar_chart.js, the function is called passing the WebFOCUS API renderConfig object.
 
-On line 108, noDataRenderCallback function creates a dummyset of data for WebFOCUS to use if the content author hasn't chosen any fields to use in InfoAssist / Designer. You could also just show a message saying something along the lines of "Please add more fields to the buckets" by inserting html markup into the element with the id enderConfig.container.id.
+* On line 108, noDataRenderCallback function creates a dummyset of data for WebFOCUS to use if the content author hasn't chosen any fields to use in InfoAssist / Designer. You could also just show a message saying something along the lines of "Please add more fields to the buckets" by inserting html markup into the element with the id enderConfig.container.id.
 
 As mentioned earlier, please see https://github.com/ibi/wf-extensions-chart/wiki/Creating-a-WebFocus-Extension to get a better understanding of the properties and 
 
-### 2.2 - Building the extension ###
+### 2.2 - Packaging the extension ###
 
 The template project comes with a simple example of how to package up all the files required for the extension to be deployed to WebFOCUS.
 
@@ -386,14 +390,14 @@ In addition to the steps there, here are a few other considerations and troubles
 
 * You'll most likely run into caching issues, so you'll want to have WebFOCUS Admin Access so you can clear the WebFOCUS cache
 
-* Probably obvious, but your WebFOCUS account needs to have permissions to use InfoAssist / Designer
+* Your WebFOCUS account needs to have permissions to use InfoAssist / Designer
 
 
 #### Trouble Shooting FAQ ####
 
 * When you've deployed / installed your extension, your extension may not show up in InfoAssist / Designer as an extension to choose from. There are one of two reasons this may be happening:
     * You need to clear your WebFOCUS Client cache by going to: WebFOCUS Admin Console->Clear Cache button in the top right corner
-    * You need to clear your browser cache; the best way to do this in your development cycle is to either open up WebFOCUS in private window mode. If you are in Chrome, you can go Open Dev Tools->Settings (Gear Box Icon)->Under Network check on "Disable cache(while DevTools is open)
+    * You need to clear your browser cache; the best way to do this in your development cycle is to either open up WebFOCUS in private window mode or, if you are in Chrome, you can go Open Dev Tools->Settings (Gear Box Icon)->Under Network check on "Disable cache(while DevTools is open)
 
 * If your extension is still not showing up, there's probably something wrong in your properties.json file. In my experience, it's typically the properties object doesn't align with the propertyAnnotations object; i.e. the for each property, you need to have a corresponding propertyAnnotation defined with the exact same name. Other things to watch out for in properties.json:
 
@@ -476,6 +480,44 @@ The win_build_d3_bar_chart_311.bat is included in the root directory of this pro
 
 Run this bat and it will build the d3_bar_chart extension with the added WebFOCUS tooltip feature.
 
+Take the build/com.ibi.d3_bar_chart folder and deploy it to your WebFOCUS server. Be sure to take the usual cache clearing steps to see your changes.
+
+#### 3.1.2: Adding tooltips using javascript
+**Overview**
+This method should only be used if you need total control over the tooltip content or you're using a 3rd party library that does not allow you to inject classes into the elements.
+
+The WebFOCUS API comes with a utility function that generates the tooltip markup similar to that generated if you used the technique described in Section 3.1.2.
+
+This project comes with com.ibi.d3_bar_chart_312.js that implements this technique. 
+
+From a high-level, the implementation requires the following:
+
+* on initial load of the extension, inject a div within the chart container that will contain the markup for the tooltip
+* show the div when the user mouses over the bar
+* hide the div when the user mouses out of the bar
+
+**Implementation notes of com.ibi.d3_bar_chart_312.js**
+Here's a list of the key implementation areas
+
+* Line 2 - variable tooltip to store tooltip object created by WebFOCUS API
+* Line 3 - variable tooltipID to store the element ID; can be used to select the tooltip DOM element if needed
+* Line 61 - 70 - handle on mouseover event for each bar; com_ibi_d3_bar_chart.show_tooltip is called to generate tooltip content associated with this bar and to show it
+* Line 117 - 128 - showTooltip function - see code comments for parameters it accepts and what it does; this should be called when a user interacts with an element that is data bound such as the bar in this example
+* Line 129 - 155 - initTooltip function - initialize the WebFOCUS tooltip object
+* Line 183 - call initTooltip to initialize the tooltip
+
+*NOTE: The user experience of tooltips can vary; the example provided in com.ibi.d3_bar_chart_312.js implements the tooltip to show up on mouseover but hides it when the user clicks off of it. Normally, the tooltip disappears when the user mouses out. However, the tooltip could contain WebFOCUS drill-downs (covered in the next section), so the menu has to stay open even if the user mouses out of the bar. In short, implement that you feel is appropriate from a user experience perspective, as the point of this example was to show how WebFOCUS generates the tooltip markup.*
+
+**Deploying com.ibi.d3_bar_chart_311**
+
+The win_build_d3_bar_chart_312.bat is included in the root directory of this project. It's similar to the win_build_d3_bar_chart.bat file; the only differences are:
+
+* adds the css folder as part of the build
+* includes src/com.ibi.d3_bar_chart_312.js instead of src/com.ibi.d3_bar_chart.js and renames it to com.ibi.d3_bar_chart.js in the build folder
+
+Run this bat and it will build the d3_bar_chart extension with the added WebFOCUS tooltip feature.
+
+Take the build/com.ibi.d3_bar_chart folder and deploy it to your WebFOCUS server. Be sure to take the usual cache clearing steps to see your changes.
 
 
 
