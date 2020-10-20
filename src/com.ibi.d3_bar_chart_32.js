@@ -127,15 +127,11 @@
         tooltip,
         x,
         y,
-        datum
+        dataPoint
       ) {
         var chart = renderConfig.moonbeamInstance;
         var evDispatcher = chart.eventDispatcher;
-  
-        //get the dataPoint that has been selected;
-        //if  more than 1 dataPoint has been selected, just pass dataPoint_index to an arbitrary one as
-        //the content shown in the tool tip is customized anyways (except for the measure data)
-        var dataPoint = datum;
+
   
         if (evDispatcher.events.length == 0) {
           //handle multi drill options
@@ -144,7 +140,7 @@
           var content = renderConfig.moonbeamInstance.getSeries(0).tooltip; //Base Content
   
           //specifies the chart riser / group selected
-          var ids = { series: datum._s, group: datum._g };
+          var ids = { series: dataPoint._s, group: dataPoint._g };
   
           tooltip
             .content(content, dataPoint, renderConfig.data, ids)
@@ -159,7 +155,7 @@
           });
   
           //specifies the chart riser / group selected
-          var ids = { series: datum._s, group: datum._g };
+          var ids = { series: dataPoint._s, group: dataPoint._g };
   
           //base markup/content created by moonbeam to be rendered by the main tooltip
           var base_tooltip = renderConfig.moonbeamInstance.getSeries(0).tooltip;

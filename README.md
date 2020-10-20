@@ -478,7 +478,7 @@ The win_build_d3_bar_chart_311.bat is included in the root directory of this pro
 * adds the css folder as part of the build
 * includes src/com.ibi.d3_bar_chart_311.js instead of src/com.ibi.d3_bar_chart.js and renames it to com.ibi.d3_bar_chart.js in the build folder
 
-Run this bat and it will build the d3_bar_chart extension with the added WebFOCUS tooltip feature.
+Run this bat and it will build the d3_bar_chart extension with the added WebFOCUS tooltip feature using CSS.
 
 Take the build/com.ibi.d3_bar_chart folder and deploy it to your WebFOCUS server. Be sure to take the usual cache clearing steps to see your changes.
 
@@ -519,7 +519,41 @@ Run this bat and it will build the d3_bar_chart extension with the added WebFOCU
 
 Take the build/com.ibi.d3_bar_chart folder and deploy it to your WebFOCUS server. Be sure to take the usual cache clearing steps to see your changes.
 
+### 3.2: Drill-down ###
+**Overview**
+Drill-down is the ability to click on a visual element and open new content in standard browser targets, such as new window or same window. It's common to pass relevant data associated with the visual element to apply to the drill-down content.
 
+For example, assume that each bar represented a country (England, Japan, etc.) and the height of the bar represented sales. The user could click on the 'England' bar and drill-down to a detailed sales report. The interaction would pass the value 'England' to the report so the report only shows data relevant to 'England'.
+
+For more information on setting up a drill-down, check out these links:
+
+* InfoAssist: https://webfocusinfocenter.informationbuilders.com/wfappent/TL3s/TL_ia/source/Nav_Rpt_Chart70.htm
+* Designer: https://kb.informationbuilders.com/topic/adding-drill-down-links-content-8207
+
+The easiest way to implement drill-down is to use the technique described in section 3.1.2 - by using this method, you get drill-down capabilities for free.
+
+Take the com.ibi.d3_bar_chart_312 build and use that to build out a chart in InfoAssist. Follow the typical steps required to setup drill-down and you'll see the drill-down show up in the menu.
+
+**Handling single drill-downs**
+There is a special case where a content author sets up a single drill-down. In that scenario, in a standard out-of-the-box chart, a user needs to click on a visual element to execute the drill-down. I.e. the WebFOCUS tooltip is not in play here so we have to handle that scenario.
+
+In com.ibi.d3_bar_chart_32.js, code is added to handle the scenario.
+
+* Line 136-148: this handles the scenario that more than one drill-down has been configured in InfoAssist / Designer or auto-drill has been enabled in InfoAssist / Designer
+
+* Line 149-199: this handles the scenario of only one drill-down by generating a WebFOCUS tooltip and dynamically adding a menu item to it
+
+
+**Deploying com.ibi.d3_bar_chart_32**
+
+The win_build_d3_bar_chart_32.bat is included in the root directory of this project. It's similar to the win_build_d3_bar_chart.bat file; the only differences are:
+
+* adds the css folder as part of the build
+* includes src/com.ibi.d3_bar_chart_32.js instead of src/com.ibi.d3_bar_chart.js and renames it to com.ibi.d3_bar_chart.js in the build folder
+
+Run this bat and it will build the d3_bar_chart extension with the added WebFOCUS single drill support tooltip feature.
+
+Take the build/com.ibi.d3_bar_chart folder and deploy it to your WebFOCUS server. Be sure to take the usual cache clearing steps to see your changes.
 
 
 
