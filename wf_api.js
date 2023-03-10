@@ -1,4 +1,4 @@
-//this file serves a simplified template for representing the WebFOCUS extension API
+//this file serves a simplified template for representing the WebFOCUS(R) extension API
 //this SHOULD NOT be added as part of the final extension package
 
 //this object is the primary object that WF API will pass to your extension wrapper
@@ -46,7 +46,7 @@ var renderConfig = {
       },
     ],
     getBucket: function (bucketID) {
-      //available when deployed to WebFOCUS
+      //available when deployed to WebFOCUS(R)
       //returns the item in the buckets array with the bucketID
 
       //here's a quick implementation of it for your use

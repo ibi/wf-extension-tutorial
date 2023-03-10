@@ -3,11 +3,11 @@
     tooltip: null,
     tooltipID: null,
     renderChart: function (renderConfig) {
-      //dataset from WebFOCUS
+      //dataset from WebFOCUS(R)
       var data = renderConfig.data;
 
       // set the dimensions and margins of the graph
-      //you will want to change this section when you have it deployed to WebFOCUS.
+      //you will want to change this section when you have it deployed to WebFOCUS(R).
       var margin = { top: 20, right: 20, bottom: 60, left: 40 },
         width = renderConfig.width - margin.left - margin.right,
         height = renderConfig.height - margin.top - margin.bottom;
@@ -93,7 +93,7 @@
       if (renderConfig.properties.yAxis.showTitle) {
         // text label for the y axis
 
-        //get the WebFOCUS metadata of the yAxis
+        //get the WebFOCUS(R) metadata of the yAxis
         var yAxisBucket = renderConfig.dataBuckets.getBucket("yAxis");
 
         svg
