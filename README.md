@@ -1,6 +1,6 @@
-# Building an IBI Chart Extension: A Step by Step Guide for Web Developers #
+# Building an ibi™ Chart Extension: A Step by Step Guide for Web Developers #
 
-This is a step-by-step guide on how to integrate a javascript-based visualization (**JS Viz**), such as D3, within WebFOCUS using the WebFOCUS (**WF**) Extension API. 
+This is a step-by-step guide on how to integrate a javascript-based visualization (**JS Viz**), such as D3, within WebFOCUS® using the WebFOCUS® (**WF**) Extension API. 
 
 By wrapping the **JS Viz** within the **WF** extension API, this visualization will become available to be used by **WF** authoring tools such as InfoAssist and Designer.
 
@@ -8,18 +8,18 @@ This tutorial will walkthrough wrapping a simple bar chart generating using D3:
 
 https://bl.ocks.org/d3noob/183abfcee0670fa49998afc695a8f5ad
 
-NOTE: This tutorial is using the WF Extension API v2.0 (WebFOCUS v8204 and up); most of the concepts apply to v1.0 of the API but not all the helper functions and objects mentioned will be available.
+NOTE: This tutorial is using the WF Extension API v2.0 (WebFOCUS® v8204 and up); most of the concepts apply to v1.0 of the API but not all the helper functions and objects mentioned will be available.
 
 ## Audience ##
 
 This tutorial is geared towards people who are well versed in javascript and various web development tools such as Visual Code, Chrome Dev Tools, and git.
 
-It is highly recommended to play around with some of the other extensions in WebFOCUS InfoAssist or Designer to get a better understanding of how the UIs align with aspects of an extension.
+It is highly recommended to play around with some of the other extensions in WebFOCUS® InfoAssist or Designer to get a better understanding of how the UIs align with aspects of an extension.
 
 
 ## Step 1: Setting up a Dev Environment ##
 
-To streamline the development process, it is recommended to create a stand-alone dev environment to start the wrapping of your  **JS Viz** vs. having to develop within the WebFOCUS environment.
+To streamline the development process, it is recommended to create a stand-alone dev environment to start the wrapping of your  **JS Viz** vs. having to develop within the WebFOCUS® environment.
 
 Download the project template provided in this git repository as a starting point.
 
@@ -29,7 +29,7 @@ Specifically,
 * any css files you need to style your **JS Viz** should go into the src/css folder
 * any static js files that are required to render the **JS Viz** should go into the src/lib folder. 
 
-**NOTE: If you are wrapping a **JS Viz** that is a D3 chart, it is highly recommended to include the following files to avoid compatibility issues with other WebFOCUS chart extensions. They have been added to the template project's src/lib folder.**
+**NOTE: If you are wrapping a **JS Viz** that is a D3 chart, it is highly recommended to include the following files to avoid compatibility issues with other WebFOCUS® chart extensions. They have been added to the template project's src/lib folder.**
 * d3 v5.16 or higher
 * d3-selection-multi module v1.0.1
 * d3-time module module v1.1
@@ -41,7 +41,7 @@ The template project also contains:
 * src/properties.json - this file needs to be packaged with the extension you are creating. You can find out more information about the properties file here: 
 https://github.com/ibi/wf-extensions-chart/wiki/Extension-Configuration-with-properties.json
 
-* wf_api.js - this file should only be used for development purposes and should not be added to your final extension package. This file contains stubs of various objects the WebFOCUS API would make available if your custom extension was fully integrated and deployed to WebFOCUS.
+* wf_api.js - this file should only be used for development purposes and should not be added to your final extension package. This file contains stubs of various objects the WebFOCUS® API would make available if your custom extension was fully integrated and deployed to WebFOCUS®.
 
 * draw_chart.html - stand-alone example of rendering the  **JS Viz** using a json array vs. how the example iterates through a csv file 
 
@@ -53,7 +53,7 @@ For more information on the what files are required to bundle into your final ex
 
 The data structure that feeds into the **JS Viz** needs to be assessed as it will determine the data definition of the wrapper. For more information on the WF Extension Data Interface see this link [https://github.com/ibi/wf-extensions-chart/wiki/Extension-Data-Interface].
 
-In summary, data from WebFOCUS is going to be provided in a flat JSON data structure. The structure of the JSON data structure is defined by the dataBuckets object in the properties.json file. 
+In summary, data from WebFOCUS® is going to be provided in a flat JSON data structure. The structure of the JSON data structure is defined by the dataBuckets object in the properties.json file. 
 
 Looking at the bar chart example, the data needs to be an array of these type of objects:
 
