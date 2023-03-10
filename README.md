@@ -14,7 +14,7 @@ NOTE: This tutorial is using the WF Extension API v2.0 (WebFOCUS® v8204 and up)
 
 This tutorial is geared towards people who are well versed in javascript and various web development tools such as Visual Code, Chrome Dev Tools, and git.
 
-It is highly recommended to play around with some of the other extensions in WebFOCUS® InfoAssist or Designer to get a better understanding of how the UIs align with aspects of an extension.
+It is highly recommended to play around with some of the other extensions in WebFOCUS<sup>®</sup> InfoAssist or Designer to get a better understanding of how the UIs align with aspects of an extension.
 
 
 ## Step 1: Setting up a Dev Environment ##
